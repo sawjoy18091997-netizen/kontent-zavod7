@@ -1310,22 +1310,22 @@ async function redirectToWFP(){
 
     const wfp = new Wayforpay();
     wfp.run({
-      merchantAccount:   data.merchantAccount,
-      merchantDomain:    data.merchantDomain,
-      merchantSignature: data.signature,
-      orderReference:    data.orderReference,
-      orderDate:         data.orderDate,
-      amount:            data.amount,
-      currency:          data.currency,
-      orderTimeout:      49000,
-      productName:       [data.productName],
-      productCount:      [data.productCount],
-      productPrice:      [data.productPrice],
-      clientFirstName:   data.clientFirstName,
-      clientLastName:    data.clientLastName,
-      clientEmail:       data.clientEmail,
-      clientPhone:       data.clientPhone,
-      language:          'UA',
+      merchantAccount:    data.merchantAccount,
+      merchantDomainName: data.merchantDomain,
+      authorizationType:  'SimpleSignature',
+      merchantSignature:  data.signature,
+      orderReference:     data.orderReference,
+      orderDate:          String(data.orderDate),
+      amount:             String(data.amount),
+      currency:           data.currency,
+      productName:        [data.productName],
+      productCount:       [String(data.productCount)],
+      productPrice:       [String(data.productPrice)],
+      clientFirstName:    data.clientFirstName,
+      clientLastName:     data.clientLastName,
+      clientEmail:        data.clientEmail,
+      clientPhone:        data.clientPhone,
+      language:           'UA',
     }, r => {
       if (r.reasonCode === 1100) {
         // Meta Pixel — Purchase event
@@ -1387,7 +1387,7 @@ document.querySelectorAll('.fi').forEach(el=>obs.observe(el));
 
 document.getElementById('modal').addEventListener('click',function(e){if(e.target===this)closeModal()});
 </script>
-<script src="https://secure.wayforpay.com/server/pay-widget.js"></script>
+<script id="widget-wfp-script" type="text/javascript" src="https://secure.wayforpay.com/server/pay-widget.js"></script>
 
 <!-- ── STICKY MOBILE CTA ── -->
 <div class="sticky-cta">
